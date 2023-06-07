@@ -1,0 +1,132 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="estilo.css">
+     <script src="https://unpkg.com/scrollreveal"></script>
+     <script>
+         ScrollReveal({ reset: true });
+     </script>
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-image">
+            <img src="img/lux.png">
+        </div>
+        <div class="form">
+            <form action="cadas.php" method="POST">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Cadastre-se</h1>
+                    </div>
+                    <div class="login-button">
+                        <button><a href="log.php">Entrar</a></button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="nome">Usuário:</label>
+                        <input id="nome" type="text" name="login" placeholder="Digite seu Nome de Usuário" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="email">E-mail</label>
+                        <input id="email" type="email" name="email" maxlength="60" placeholder="xxxxxxxxxxxxx@gmail.com" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="cpf">CPF</label>
+                        <input oninput="mascara(this)" id="cpf" type="text" name="cpf" maxlength="14" placeholder="xxx.xxx.xxx-xx" required\
+                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                    </div>
+                    <div class="input-box">
+                        <label for="celular">Celular</label>
+                        <input onkeypress="mask(this, mphone);" id="celular" type="tel" name="celular" maxlength="15" placeholder="(xx)xxxxx-xxxx" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="endereco">Endereço</label>
+                        <input id="endereco" type="text" name="endereco" placeholder="Digite seu Endereço" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="senha">Senha</label>
+                        <input id="senha" type="password" name="senha" placeholder="Digite sua Senha" required>
+                    </div>
+                    <div class="gender-inputs">
+                        <div class="gender-title">
+                            <h6>Gênero</h6>
+                        </div>
+                        <div class="gender-group">
+                            <div class="gender-input">
+                                <input type="radio" id="male" name="gender">
+                                <label for="male">Masculino</label>
+                            </div>
+                            <div class="gender-input">
+                                <input type="radio" id="female" name="gender">
+                                <label for="female">Feminino</label>
+                            </div>
+                            <div class="gender-input">
+                                <input type="radio" id="others" name="gender">
+                                <label for="others">Outros</label>
+                            </div>
+                            <div class="gender-input">
+                                <input type="radio" id="none" name="gender">
+                                <label for="none">Prefiro Não Dizer</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="continue-button">
+                        <button  name="submit"><a href="#">Cadastrar</a></button>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+		ScrollReveal().reveal('.input-group', {delay: 500});
+		ScrollReveal().reveal('.form-header', {delay: 500});
+        function mascara(i){
+   
+   var v = i.value;
+   
+   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+      i.value = v.substring(0, v.length-1);
+      return;
+   }
+   
+   i.setAttribute("maxlength", "14");
+   if (v.length == 3 || v.length == 7) i.value += ".";
+   if (v.length == 11) i.value += "-";
+
+}
+function mask(o, f) {
+  setTimeout(function() {
+    var v = mphone(o.value);
+    if (v != o.value) {
+      o.value = v;
+    }
+  }, 1);
+}
+
+function mphone(v) {
+  var r = v.replace(/\D/g, "");
+  r = r.replace(/^0/, "");
+  if (r.length > 10) {
+    r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+  } else if (r.length > 5) {
+    r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+  } else if (r.length > 2) {
+    r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+  } else {
+    r = r.replace(/^(\d*)/, "($1");
+  }
+  return r;
+}
+	</script>
+    
+</body>
+</html>
